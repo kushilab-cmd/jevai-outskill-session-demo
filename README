@@ -1,0 +1,84 @@
+# Jev vs Frontier LLM Demo
+
+A live workshop-style Next.js demo that compares a probability-aware “Jev” classifier against a frontier LLM on the same customer-support email classification task.
+
+The app presents the same emails, the same three options, and the same machine to both models, then surfaces differences in speed, cost, confidence, calibration, and failure patterns.
+
+## Why this project exists
+
+This repo is designed to demonstrate a practical question in AI evaluation:
+
+- When two models solve the same classification task, how do they differ?
+- Does one model produce more calibrated confidence?
+- Can a structured model make more reliable decisions than a general chat model?
+- How do latency, retries, and provider behavior affect a production decision pipeline?
+
+The demo uses support emails from an online appliance store and classifies customer intent into:
+
+- complaint
+- refund_request
+- cancel_account
+
+See `config/task.yaml` for the canonical task definition.
+
+## Features
+
+- Side-by-side model comparisons in a race view
+- Confidence analysis for each prediction
+- Stress-test interface for adversarial or difficult emails
+- Calibration view for evaluating model certainty vs. correctness
+- Dataset browser for reviewing the synthetic email corpus
+- Health checks for both model APIs and local setup checks
+- Replay support for saved race runs
+
+## Stack
+
+- Next.js
+- React
+- TypeScript
+- Vitest
+- OpenAI-compatible API access via OpenRouter
+- Typesafe AI SDK for Jev integration
+
+## Repository structure
+
+```text
+.
+├── app/
+│   ├── api/
+│   ├── calibration/
+│   ├── confidence/
+│   ├── dataset/
+│   ├── health/
+│   ├── race/
+│   ├── stress/
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── icon.svg
+├── components/
+├── config/
+│   ├── llm.yaml
+│   ├── pricing.yaml
+│   ├── run.yaml
+│   ├── task.yaml
+│   └── tiers.yaml
+├── data/
+├── lib/
+├── public/
+├── runs/
+├── scripts/
+│   ├── make_dataset.ts
+│   ├── review.ts
+│   ├── smoke.ts
+│   └── parity/
+├── tests/
+├── .env.example
+├── .gitignore
+├── .npmrc
+├── AGENTS.md
+├── next.config.ts
+├── package.json
+├── tsconfig.json
+├── vitest.config.ts
+└── package-lock.json
